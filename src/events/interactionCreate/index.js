@@ -11,4 +11,5 @@ export const action = async(interaction) => {
     const appStore = useAppStore()
     const action = appStore.commandsActionMap.get(interaction.commandName)
     await action(interaction) 
+
 }
