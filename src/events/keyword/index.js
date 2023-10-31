@@ -7,7 +7,10 @@ export const event = {
 
 export const action = async(message) => {
     if(message.author.bot){return}
-    if (message.content === "你好"){
+    if (message.content.includes("幹你娘")){
         await message.reply("你娘卡好");
+    }
+    if (message.content === "你好"){
+        await message.channel.send("你卡好")
     }
 }
