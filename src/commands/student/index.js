@@ -6,7 +6,9 @@ export const command = new SlashCommandBuilder()
 .addStringOption(option =>
     option.setName('選擇學生')
         .setDescription('填入名字')
+        .setRequired(true)
         .setAutocomplete(true))
+        
 
 export const autocomplete = async(interaction) =>{
     const appStore = useAppStore()
@@ -33,11 +35,11 @@ export const autocomplete = async(interaction) =>{
 export const action = async(interaction) =>{
     try{
         const student = interaction.options.getString('選擇學生');
-        await interaction.channel.send({files: [process.env.STUDENT_IMAGE_PLACE + student + ".png"]})
+        await interaction.reply({files: [process.env.STUDENT_IMAGE_PLACE + student + ".png"]})
     }catch (error) {
         try{
             const student = interaction.options.getString('選擇學生');
-            await interaction.channel.send({files: [process.env.STUDENT_IMAGE_PLACE + student + ".jpg"]})
+            await interaction.reply({files: [process.env.STUDENT_IMAGE_PLACE + student + ".jpg"]})
         }catch (error){        
             console.error(error);
             await interaction.reply({ content: '無法辨別學生名字', ephemeral: true });

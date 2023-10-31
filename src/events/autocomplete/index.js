@@ -10,8 +10,8 @@ export const event = {
 export const action = async(interaction) => {
     if(!interaction.isAutocomplete()){return}
     const appStore = useAppStore()
-    const action = appStore.autocom.get(interaction.commandName)
-    await action(interaction);
+    const autocomplete = appStore.autocom.get(interaction.commandName)
+    await autocomplete(interaction);
   
 
 }
