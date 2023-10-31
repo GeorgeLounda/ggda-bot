@@ -4,8 +4,10 @@ import dotenv from "dotenv"
 import vueInit from "@/core/vue"
 import { loadCommands,loadEvents} from "@/core/loader"
 import { useAppStore } from "./store/app"
+import {LoadStudentName} from "@/commands/student/student_name"
 vueInit()
 dotenv.config()
+LoadStudentName()
 loadCommands()
 
 // Create a new client instance

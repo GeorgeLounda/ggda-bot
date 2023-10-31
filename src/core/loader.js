@@ -24,16 +24,24 @@ export const loadCommands = async() =>{
     const appStore = useAppStore()
     const commands = []
     const actions = new Collection()
+    const autocom = new Collection()
     const files = await fg("./src/commands/**/index.js")
-   for (const file of files){
-    const cmd = await import(file)
-    commands.push(cmd.command)
-    actions.set(cmd.command.name,cmd.action)
-   }
-   await updateSlashCommands(commands)
-   appStore.commandsActionMap = actions
+    for (const file of files){
+        const cmd = await import(file)
+        commands.push(cmd.command)
 
-   console.log(appStore.commandsActionMap)
+        if(cmd.command.name === 'student'){
+            autocom.set(cmd.command.name,cmd.autocomplete)
+            actions.set(cmd.command.name,cmd.action)
+        }else{
+            actions.set(cmd.command.name,cmd.action)
+        }
+        await updateSlashCommands(commands)
+        appStore.commandsActionMap = actions
+        appStore.autocom = autocom
+    }
+    console.log(appStore.commandsActionMap)
+    console.log(appStore.autocom)
 }
 
 
@@ -46,6 +54,12 @@ export const loadEvents = async() =>{
 
         if(eventFile.once){
             client.once(
+                eventFile.event.name,
+                eventFile.action
+            )
+        }
+        else if(eventFile.auto){
+            client.on(
                 eventFile.event.name,
                 eventFile.action
             )
