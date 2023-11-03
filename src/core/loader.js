@@ -42,6 +42,7 @@ export const loadCommands = async() =>{
     }
     console.log(appStore.commandsActionMap)
     console.log(appStore.autocom)
+    console.log("完成!");
 }
 
 
