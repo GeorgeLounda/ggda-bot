@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from "discord.js"
 import { useAppStore } from "../../store/app"
 export const command = new SlashCommandBuilder()
-.setName('student')
+.setName('學生')
 .setDescription('輸入學生')
 .addStringOption(option =>
     option.setName('選擇學生')

@@ -30,7 +30,7 @@ export const loadCommands = async() =>{
         const cmd = await import(file)
         commands.push(cmd.command)
 
-        if(cmd.command.name === 'student'){
+        if(cmd.command.name === '學生'){
             autocom.set(cmd.command.name,cmd.autocomplete)
             actions.set(cmd.command.name,cmd.action)
         }else{
