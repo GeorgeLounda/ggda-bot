@@ -43,9 +43,12 @@ export const action = async(interaction) =>{
 
    if (interaction.options.getSubcommand('食物名單') === '添加食物'){
       const addfood = interaction.options.getString('加入')
-      xlsx.utils.sheet_add_aoa(food, [[addfood,interaction.user.tag]], {origin: -1})
+      xlsx.utils.sheet_add_aoa(food, [[addfood,interaction.user.tag,interaction.user.id]], {origin: -1})
       xlsx.writeFile(foodmenu,process.env.EATMENU_PLACE)
-      interaction.reply(`${interaction.user.tag} 添加 ${addfood} 成功!! `)
+      interaction.reply({content:`<@${interaction.user.id}> 添加 ${addfood} 成功!! `,allowedMentions: {
+         "parse": []
+       }})
+      
    }else if (interaction.options.getSubcommand('食物名單') === '刪除食物'){
       const deletefood = interaction.options.getString('刪除')
       for(var food_index = range.s.r;food_index <= range.e.r;food_index++){
@@ -53,11 +56,14 @@ export const action = async(interaction) =>{
             for (var replace_index = food_index;replace_index <=range.e.r;replace_index++){
                food[xlsx.utils.encode_cell({c: 0, r:replace_index})] = food[xlsx.utils.encode_cell({c: 0, r:replace_index+1})]
                food[xlsx.utils.encode_cell({c: 1, r:replace_index})] = food[xlsx.utils.encode_cell({c: 1, r:replace_index+1})]
+               food[xlsx.utils.encode_cell({c: 2, r:replace_index})] = food[xlsx.utils.encode_cell({c: 1, r:replace_index+1})]
             }
             range.e.r -= 1
             food["!ref"] = xlsx.utils.encode_range(range)
             xlsx.writeFile(foodmenu,process.env.EATMENU_PLACE)
-            interaction.reply(`${interaction.user.tag} 刪除 ${deletefood} 成功!! `)
+            interaction.reply({content:`${interaction.user.id} 刪除 ${deletefood} 成功!! `,allowedMentions: {
+               "parse": []
+             }})
             return;
          }
        
@@ -68,8 +74,11 @@ export const action = async(interaction) =>{
       for(var food_index = range.s.r;food_index <= range.e.r;food_index++){
 
          if(food[xlsx.utils.encode_cell({c: 0, r:food_index})].v === searchfood){
-            const food_adder = food[xlsx.utils.encode_cell({c: 1, r:food_index})]
-            interaction.reply(`${searchfood} 是由 ${food_adder.v} 添加!! `)
+            const food_adder = food[xlsx.utils.encode_cell({c: 2, r:food_index})]
+            interaction.reply({content:`${searchfood} 是由 <@${food_adder.v}> 添加!! `,allowedMentions: {
+               "parse": []
+             }})
+
             return;
          }
       }

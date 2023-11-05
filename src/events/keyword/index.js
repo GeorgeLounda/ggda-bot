@@ -13,4 +13,9 @@ export const action = async(message) => {
     if (message.content === "你好"){
         await message.channel.send("你卡好")
     }
+    if (message.content === "你GG大"){
+        await message.channel.send({content:`<@${message.author.id}>`,allowedMentions: {
+        parse: []
+      }})
+    }
 }
