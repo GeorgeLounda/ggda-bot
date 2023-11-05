@@ -56,12 +56,12 @@ export const action = async(interaction) =>{
             for (var replace_index = food_index;replace_index <=range.e.r;replace_index++){
                food[xlsx.utils.encode_cell({c: 0, r:replace_index})] = food[xlsx.utils.encode_cell({c: 0, r:replace_index+1})]
                food[xlsx.utils.encode_cell({c: 1, r:replace_index})] = food[xlsx.utils.encode_cell({c: 1, r:replace_index+1})]
-               food[xlsx.utils.encode_cell({c: 2, r:replace_index})] = food[xlsx.utils.encode_cell({c: 1, r:replace_index+1})]
+               food[xlsx.utils.encode_cell({c: 2, r:replace_index})] = food[xlsx.utils.encode_cell({c: 2, r:replace_index+1})]
             }
             range.e.r -= 1
             food["!ref"] = xlsx.utils.encode_range(range)
             xlsx.writeFile(foodmenu,process.env.EATMENU_PLACE)
-            interaction.reply({content:`${interaction.user.id} 刪除 ${deletefood} 成功!! `,allowedMentions: {
+            interaction.reply({content:`<@${interaction.user.id}> 刪除 ${deletefood} 成功!! `,allowedMentions: {
                "parse": []
              }})
             return;
