@@ -18,7 +18,7 @@ export const autocomplete = async(interaction) =>{
     if (focusedOption.name === '選擇學生') {
         choices = appStore.student_name
      }
-    const filtered = choices.filter(choice => choice.startsWith(focusedOption.value));
+    const filtered = choices.filter(choice => choice.includes(focusedOption.value));
 
     let options;
     if (filtered.length > 25) {
