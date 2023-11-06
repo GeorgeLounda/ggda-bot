@@ -1,4 +1,4 @@
-import { SlashCommandBuilder } from "discord.js"
+import { EmbedBuilder,SlashCommandBuilder } from "discord.js"
 const xlsx = require('xlsx');
 
 export const command = new SlashCommandBuilder()
@@ -15,7 +15,10 @@ export const action = async(interaction) =>{
    const range = xlsx.utils.decode_range(food['!ref'])
    const food_address = {c: 0, r: Math.floor(Math.random() * (range.e.r + 1))};
    const choose = xlsx.utils.encode_cell(food_address)
-   interaction.reply(food[choose].v)
+   const embed = new EmbedBuilder()
+         .setTitle(`${food[choose].v}`)
+         .setColor("Random")
+   interaction.reply({content:`<@${interaction.user.id}> 最想要吃的是...`,embeds:[embed]})
    
 
 }

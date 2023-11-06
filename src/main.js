@@ -8,7 +8,6 @@ import {LoadStudentName} from "@/commands/student/student_name"
 vueInit()
 dotenv.config()
 LoadStudentName()
-loadCommands()
 
 // Create a new client instance
 const client = new Client({ 
@@ -22,6 +21,7 @@ const client = new Client({
 })
 const appStore = useAppStore()
 appStore.client = client
+loadCommands()
 loadEvents()
 
 

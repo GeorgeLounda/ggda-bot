@@ -6,6 +6,7 @@ export const useAppStore = defineStore('app', {
         commandsActionMap: null,
         autocom: null,
         student_name : null,
+        AllGuilds: null,
     }),
     getters: {},
     actions: {},

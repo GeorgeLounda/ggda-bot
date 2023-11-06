@@ -1,6 +1,5 @@
-import { SlashCommandBuilder } from "discord.js"
+import { EmbedBuilder, SlashCommandBuilder } from "discord.js"
 const xlsx = require('xlsx');
-
 export const command = new SlashCommandBuilder()
 .setName('食物名單')
 .setDescription('隨機抽食物(只有要抽的話不用加東西)')
@@ -31,7 +30,11 @@ export const command = new SlashCommandBuilder()
          .setDescription('查詢名單中的食物跟添加者')
          .setRequired(true)
       ))
-
+   .addSubcommand(subcommand =>
+      subcommand
+         .setName("列出名單")
+         .setDescription('列出名單中的食物')
+      )
         
 
 
@@ -50,6 +53,10 @@ export const action = async(interaction) =>{
        }})
       
    }else if (interaction.options.getSubcommand('食物名單') === '刪除食物'){
+      if(range.e.r === 0){
+         interaction.reply("名單內應至少保持一項食物")
+         return
+      }
       const deletefood = interaction.options.getString('刪除')
       for(var food_index = range.s.r;food_index <= range.e.r;food_index++){
          if(food[xlsx.utils.encode_cell({c: 0, r:food_index})].v === deletefood){
@@ -72,7 +79,6 @@ export const action = async(interaction) =>{
    }else if (interaction.options.getSubcommand('食物名單') === '查詢食物'){
       const searchfood = interaction.options.getString('查詢')
       for(var food_index = range.s.r;food_index <= range.e.r;food_index++){
-
          if(food[xlsx.utils.encode_cell({c: 0, r:food_index})].v === searchfood){
             const food_adder = food[xlsx.utils.encode_cell({c: 2, r:food_index})]
             interaction.reply({content:`${searchfood} 是由 <@${food_adder.v}> 添加!! `,allowedMentions: {
@@ -83,6 +89,26 @@ export const action = async(interaction) =>{
          }
       }
       interaction.reply(`名單中找不到 ${searchfood} `)
+   }else if (interaction.options.getSubcommand('食物名單') === '列出名單'){
+      var fooditem = ""
+      for(var fooditem_index = range.s.r;(fooditem_index <= range.e.r) && (fooditem_index <= 46);fooditem_index++){
+         fooditem+=food[xlsx.utils.encode_cell({c: 0, r:fooditem_index})].v
+         fooditem+="\n"
+      }
+      if(range.e.r > 46){
+         fooditem+=`...還有 ${range.e.r - 46} 個食物等等`
+         const embed = new EmbedBuilder()
+         .setTitle(`食物名單`)
+         .setDescription(`${fooditem}`)
+         .setColor(0x48d8d8)
+      interaction.reply({embeds:[embed]})
+      }else{
+      const embed = new EmbedBuilder()
+         .setTitle(`食物名單`)
+         .setDescription(`${fooditem}`)
+         .setColor(0x48d8d8)
+      interaction.reply({embeds:[embed]})}
+    
    }
 
 }

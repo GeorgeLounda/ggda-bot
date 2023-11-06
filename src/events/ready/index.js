@@ -1,11 +1,13 @@
 import { Events } from "discord.js"
 import { ActivityType } from "discord.js";
+import { useAppStore } from "../../store/app"
 export const event = {
     name:Events.ClientReady,
     once:true,
 }
 
 export const action = async(c) => {
+
     console.log(`Logged in as ${c.user.tag}`);
     const status = await c.user.setActivity({
         type:ActivityType.Custom,
