@@ -10,10 +10,12 @@ export const action = async(interaction) => {
     if(!interaction.isChatInputCommand()){return}
     const appStore = useAppStore()
     const action = appStore.commandsActionMap.get(interaction.commandName)
-    try{
-        await action(interaction)
-    }catch(error){
-        await interaction.reply({ content: '發生不明錯誤', ephemeral: true })
-    } 
-
+    if(process.env.MAINTAINCE === "true" && interaction.gulidId !== process.env.SERVER_ID)
+    {
+        try{
+            await action(interaction)
+        }catch(error){
+            await interaction.reply({ content: '發生不明錯誤', ephemeral: true })
+        } 
+    }
 }
