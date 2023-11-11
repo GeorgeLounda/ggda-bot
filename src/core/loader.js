@@ -6,7 +6,7 @@ import { useAppStore} from "@/store/app"
 const updateSlashCommands = async(commands) =>{
 
     const rest = new REST({version:10}).setToken(process.env.TOKEN)
-    const result = await rest.put(
+    await rest.put(
         Routes.applicationCommands(
             process.env.APPLICATOIN_ID,
         ),
@@ -15,7 +15,6 @@ const updateSlashCommands = async(commands) =>{
         },
 
     )
-    console.log(result)
 
 }
 
