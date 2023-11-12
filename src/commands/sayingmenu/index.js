@@ -1,8 +1,8 @@
-import { SlashCommandBuilder } from "discord.js"
+import { SlashCommandBuilder,EmbedBuilder } from "discord.js"
 import { useAppStore } from "../../store/app"
 const xlsx = require('xlsx');
 export const command = new SlashCommandBuilder()
-.setName('名言')
+.setName('語錄')
 .setDescription('輸入名言')
 .addStringOption(option =>
     option.setName('選擇名言')
@@ -12,26 +12,22 @@ export const command = new SlashCommandBuilder()
         
 
 export const autocomplete = async(interaction) =>{
-    const appStore = useAppStore()
     const focusedOption = interaction.options.getFocused(true);
     let choices;
-    const path = "C:/Users/糾舉浪打/Desktop/discord gg人/ggda-bot/src/events/recordreply/saying.xlsx"
+    const path = "C:\\Users\\糾舉浪打\\Desktop\\discord gg人\\ggda-bot\\src\\events\\recordreply\\saying.xlsx"
     const saying = xlsx.readFile(path)
     const sheetNames = saying.SheetNames;
     const sayingsheet = saying.Sheets[sheetNames[0]];
     var range = xlsx.utils.decode_range(sayingsheet['!ref'])
     var saying_name = []
-    console.log(range)
     try{
         for(var saying_index = range.s.r;saying_index <= range.e.r;saying_index++){
             const saying_adder = sayingsheet[xlsx.utils.encode_cell({c: 0, r:saying_index})]
             saying_name.push(saying_adder.v)   
-            console.log(saying_adder.v)
         }
     }catch(error){
         console.log(error)
     }
-     console.log(saying_name)
     if (focusedOption.name === '選擇名言') {
         choices = saying_name
      }
@@ -48,14 +44,49 @@ export const autocomplete = async(interaction) =>{
         options.map(choice => ({ name: choice, value: choice })),
     );
 }
-
+/**
+     * @param {CommandInteraction} interaction
+     */
 export const action = async(interaction) =>{
     try{
-        const saying = interaction.options.getString('選擇名言');
-        await interaction.reply(saying)
+        const sayingpick = interaction.options.getString('選擇名言');
+        const path = "C:/Users/糾舉浪打/Desktop/discord gg人/ggda-bot/src/events/recordreply/saying.xlsx"
+        const saying = xlsx.readFile(path)
+        const sheetNames = saying.SheetNames;
+        const sayingsheet = saying.Sheets[sheetNames[0]];
+        var range = xlsx.utils.decode_range(sayingsheet['!ref'])
+        for(var saying_index = range.s.r;saying_index <= range.e.r;saying_index++){
+            if(sayingsheet[xlsx.utils.encode_cell({c: 0, r:saying_index})].v === sayingpick){
+                const saying_name = sayingsheet[xlsx.utils.encode_cell({c: 0, r:saying_index})].v
+                const saying_authorid = sayingsheet[xlsx.utils.encode_cell({c: 1, r:saying_index})].v
+                const saying_content = sayingsheet[xlsx.utils.encode_cell({c: 2, r:saying_index})].v
+                const saying_time = sayingsheet[xlsx.utils.encode_cell({c: 3, r:saying_index})].v
+                const member = interaction.guild.members.cache.get(saying_authorid)
+                const sayingEmbed = new EmbedBuilder()
+                .setTitle(`「**${saying_content}**」`)
+                .setAuthor({ name: saying_name})
+                .setDescription(`\u200B`)
+                .addFields(
+                    { name: `\u200B` , value:`----------------------by <@${saying_authorid}>`,inline: true},
+                )
+                .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
+                .setFooter({ text: `Said at ${new Date(saying_time).toString()}`});
+                interaction.reply({
+                    content:`**${saying_name} 是 <@${saying_authorid}> 的名言**`,
+                    allowedMentions: {
+                        "parse": []
+                    },
+                    embeds: [sayingEmbed]
+                })
+   
+               return;
+            }
+         }
+         interaction.reply(`名單中找不到 ${sayingpick} `)
     }catch (error) {
         
-            await interaction.reply({ content: '無法辨別學生名字', ephemeral: true });
+            await interaction.reply({ content: '無法辨別', ephemeral: true })
+            console.log(error)
         
 
     }

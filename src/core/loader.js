@@ -44,7 +44,7 @@ export const loadCommands = async() =>{
         const cmd = await import(file)
         commands.push(cmd.command)
 
-        if(cmd.command.name === '學生'||cmd.command.name === '名言'){
+        if(cmd.command.name === '學生'||cmd.command.name === '語錄'){
             autocom.set(cmd.command.name,cmd.autocomplete)
             actions.set(cmd.command.name,cmd.action)
         }else{
