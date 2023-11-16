@@ -6,7 +6,7 @@ export const command = new SlashCommandBuilder().setName("ping").setDescription(
 export const action = async(interaction) =>{
 
     try{
-        interaction.reply({content:`<@${interaction.user.id}> `,allowed_mentions: {
+        interaction.reply({content:`<@${interaction.user.id}>`,allowed_mentions: {
             "parse": []
           }})
 

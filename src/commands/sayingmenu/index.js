@@ -1,5 +1,4 @@
-import { SlashCommandBuilder,EmbedBuilder } from "discord.js"
-import { useAppStore } from "../../store/app"
+import { SlashCommandBuilder,EmbedBuilder, ModalBuilder, CommandInteraction } from "discord.js"
 const xlsx = require('xlsx');
 export const command = new SlashCommandBuilder()
 .setName('語錄')
@@ -48,8 +47,8 @@ export const autocomplete = async(interaction) =>{
      * @param {CommandInteraction} interaction
      */
 export const action = async(interaction) =>{
+        const sayingpick = interaction.options.getString('選擇名言')
     try{
-        const sayingpick = interaction.options.getString('選擇名言');
         const path = "C:/Users/糾舉浪打/Desktop/discord gg人/ggda-bot/src/events/recordreply/saying.xlsx"
         const saying = xlsx.readFile(path)
         const sheetNames = saying.SheetNames;
@@ -62,12 +61,31 @@ export const action = async(interaction) =>{
                 const saying_content = sayingsheet[xlsx.utils.encode_cell({c: 2, r:saying_index})].v
                 const saying_time = sayingsheet[xlsx.utils.encode_cell({c: 3, r:saying_index})].v
                 const member = interaction.guild.members.cache.get(saying_authorid)
+                if (!member){
+                    const sayingEmbed = new EmbedBuilder()
+                    .setTitle(`「**${saying_content}**」`)
+                    .setAuthor({ name: saying_name})
+                    .setDescription(`\u200B`)
+                    .addFields(
+                        { name: `\u200B` , value:`-----------------------by <@${saying_authorid}>`,inline: true},
+                    )
+                    .setFooter({ text: `Said at ${new Date(saying_time).toString()}`});
+                    interaction.reply({
+                        content:`**${saying_name} 是 <@${saying_authorid}> 的名言**`,
+                        allowedMentions: {
+                            "parse": []
+                        },
+                        embeds: [sayingEmbed]
+                    })
+       
+                   return;
+                }
                 const sayingEmbed = new EmbedBuilder()
                 .setTitle(`「**${saying_content}**」`)
                 .setAuthor({ name: saying_name})
                 .setDescription(`\u200B`)
                 .addFields(
-                    { name: `\u200B` , value:`----------------------by <@${saying_authorid}>`,inline: true},
+                    { name: `\u200B` , value:`-----------------------by <@${saying_authorid}>`,inline: true},
                 )
                 .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
                 .setFooter({ text: `Said at ${new Date(saying_time).toString()}`});
@@ -85,9 +103,9 @@ export const action = async(interaction) =>{
          interaction.reply(`名單中找不到 ${sayingpick} `)
     }catch (error) {
         
-            await interaction.reply({ content: '無法辨別', ephemeral: true })
+            await interaction.reply({ content: '無法辨別指令抑或是成員不在此伺服器', ephemeral: true })
             console.log(error)
-        
+            console.log(`${interaction.user.displayName} 在用 ${interaction.commandName}.${sayingpick}`)
 
     }
 }

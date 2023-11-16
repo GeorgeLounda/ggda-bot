@@ -1,0 +1,184 @@
+[
+  {
+    "pollId": "5da9b66c-1d36-4f78-83cb-1fcad502ff6b",
+    "authorId": "432074524113240074",
+    "guildId": "1166168886589268128",
+    "messageId": "1174040571610923070",
+    "content": "dddddddddd",
+    "status": "投票結束",
+    "upvote": [
+      "432074524113240074"
+    ],
+    "downvote": []
+  },
+  {
+    "pollId": "ad05587b-37b7-4343-88eb-1c0eed788a65",
+    "authorId": "432074524113240074",
+    "guildId": "1157777922971672587",
+    "messageId": "1174047345952956516",
+    "content": "測試",
+    "status": "投票結束",
+    "upvote": [],
+    "downvote": []
+  },
+  {
+    "pollId": "78ef8e98-845f-49be-a970-aaaaf52db835",
+    "authorId": "432074524113240074",
+    "guildId": "1166168886589268128",
+    "messageId": "1174054045128863844",
+    "content": "kkkkkk",
+    "status": "投票中",
+    "upvote": [],
+    "downvote": []
+  },
+  {
+    "pollId": "484e5f9a-f887-4ac2-a02e-5c60a3bbed84",
+    "authorId": "432074524113240074",
+    "guildId": "1166168886589268128",
+    "messageId": "1174054596138782800",
+    "content": "ffffffff",
+    "status": "投票作廢",
+    "upvote": [],
+    "downvote": []
+  },
+  {
+    "pollId": "031525cc-b20e-4688-8502-8bb2ea511d84",
+    "authorId": "432074524113240074",
+    "guildId": "1166168886589268128",
+    "messageId": "1174059610504708117",
+    "content": "oooooooooooooo",
+    "status": "投票結束",
+    "upvote": [],
+    "downvote": []
+  },
+  {
+    "pollId": "d4f46935-64b1-40cd-b320-b752752a5c49",
+    "authorId": "432074524113240074",
+    "guildId": "1166168886589268128",
+    "messageId": "1174059949664518285",
+    "content": "oooooooooooo",
+    "status": "投票結束",
+    "upvote": [],
+    "downvote": []
+  },
+  {
+    "pollId": "eb8591ca-3160-4c4f-83a5-3d5a1f6455dc",
+    "authorId": "432074524113240074",
+    "guildId": "1166168886589268128",
+    "messageId": "1174060182872002650",
+    "content": "ppppppppp",
+    "status": "投票結束",
+    "upvote": [],
+    "downvote": []
+  },
+  {
+    "pollId": "2289beea-4092-48a5-a83a-824727358c3c",
+    "authorId": "432074524113240074",
+    "guildId": "1166168886589268128",
+    "messageId": "1174060495565754478",
+    "content": "oooooooooo",
+    "status": "投票作廢",
+    "upvote": [],
+    "downvote": []
+  },
+  {
+    "pollId": "99c9fe51-7ec9-4c1d-a0fd-887bc3a4f221",
+    "authorId": "432074524113240074",
+    "guildId": "1166168886589268128",
+    "messageId": "1174060710565773343",
+    "content": "oooooooooooo",
+    "status": "投票結束",
+    "upvote": [],
+    "downvote": []
+  },
+  {
+    "pollId": "f519c578-b3e9-48a0-a019-fd547406f90b",
+    "authorId": "432074524113240074",
+    "guildId": "1166168886589268128",
+    "messageId": "1174060755545509910",
+    "content": "ooooooooooooooo",
+    "status": "投票作廢",
+    "upvote": [],
+    "downvote": []
+  },
+  {
+    "pollId": "a85c44e2-24b5-42fe-a805-755bab68b766",
+    "authorId": "432074524113240074",
+    "guildId": "1166168886589268128",
+    "messageId": "1174061329951244388",
+    "content": "[[[[[[[[[",
+    "status": "投票中",
+    "upvote": [],
+    "downvote": []
+  },
+  {
+    "pollId": "b2210456-782d-4078-92d8-3ab74ba1a98b",
+    "authorId": "432074524113240074",
+    "guildId": "1166168886589268128",
+    "messageId": "1174061751873065000",
+    "content": "try",
+    "status": "投票結束",
+    "upvote": [],
+    "downvote": []
+  },
+  {
+    "pollId": "78b1f6aa-149d-4af8-8183-e30fbf4bd833",
+    "authorId": "432074524113240074",
+    "guildId": "1166168886589268128",
+    "messageId": "1174064020475617400",
+    "content": "000000000",
+    "status": "投票結束",
+    "upvote": [
+      "432074524113240074"
+    ],
+    "downvote": []
+  },
+  {
+    "pollId": "e9672041-9b4b-474e-ba8a-3a2a62680d3c",
+    "authorId": "432074524113240074",
+    "guildId": "1166168886589268128",
+    "messageId": "1174068447626403860",
+    "content": "oooooooooo",
+    "status": "投票結束",
+    "upvote": [],
+    "downvote": [
+      "432074524113240074"
+    ]
+  },
+  {
+    "pollId": "25b7f2c8-7f2f-47dc-8262-c84ca4a9e2d1",
+    "authorId": "432074524113240074",
+    "guildId": "1157777922971672587",
+    "messageId": "1174069060544237590",
+    "content": "測試",
+    "status": "投票結束",
+    "upvote": [
+      "432074524113240074"
+    ],
+    "downvote": []
+  },
+  {
+    "pollId": "4879ae14-c738-406c-a16c-c4c5ca723d16",
+    "authorId": "432074524113240074",
+    "guildId": "1157777922971672587",
+    "messageId": "1174069958175621132",
+    "content": "測試2",
+    "status": "投票作廢",
+    "upvote": [],
+    "downvote": [
+      "432074524113240074"
+    ]
+  },
+  {
+    "pollId": "b2661264-7456-4fd3-8dcd-7ba8a3459a08",
+    "authorId": "432074524113240074",
+    "guildId": "1041237534677676112",
+    "messageId": "1174070321968590940",
+    "content": "測試中\n大奶才是唯一真理",
+    "status": "投票作廢",
+    "upvote": [
+      "432074524113240074"
+    ],
+    "downvote": []
+  }
+]
