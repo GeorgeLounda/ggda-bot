@@ -20,6 +20,7 @@ export const event = {
  */
 export const action = async(interaction) => {
     if(!interaction.isModalSubmit()){return}
+    if(interaction.customId !==`poll-<@${interaction.user.id}>`){return}
     try{
         /**interaction.awaitModalSubmit({
             time: 1000 * 60 * 3,
