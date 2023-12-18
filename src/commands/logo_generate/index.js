@@ -1,6 +1,5 @@
 import { SlashCommandBuilder,AttachmentBuilder } from "discord.js"
 import  Canvas from'@napi-rs/canvas'
-import { rgb } from "d3"
 export const command = new SlashCommandBuilder()
     .setName("logo")
     .setDescription("生成logo")

@@ -1,10 +1,14 @@
-import { Events } from "discord.js"
+import { Events, Message, } from "discord.js"
+
 
 export const event = {
     name:Events.MessageCreate,
-
+    
 }
 
+/**
+ * @param {Message} message 
+ */
 export const action = async(message) => {
     if(message.author.bot){return}
     if (message.content.includes("GG好大")){
